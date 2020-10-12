@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace TodoApi.Migrations
 {
-    public partial class inicial : Migration
+    public partial class Combustion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,13 +54,26 @@ namespace TodoApi.Migrations
                 name: "brands",
                 columns: table => new
                 {
-                    id = table.Column<long>(nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_brands", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "combustions",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_combustions", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,12 +186,13 @@ namespace TodoApi.Migrations
                 name: "cars",
                 columns: table => new
                 {
-                    id = table.Column<long>(nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     placa = table.Column<string>(nullable: true),
-                    modelo = table.Column<string>(nullable: true),
+                    modelo = table.Column<int>(nullable: false),
                     numero_puertas = table.Column<int>(nullable: false),
-                    brand_key = table.Column<long>(nullable: true)
+                    brand_key = table.Column<int>(nullable: true),
+                    combustion_key = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -187,6 +201,12 @@ namespace TodoApi.Migrations
                         name: "fk_cars_brands_brand_key",
                         column: x => x.brand_key,
                         principalTable: "brands",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "fk_cars_combustions_combustion_key",
+                        column: x => x.combustion_key,
+                        principalTable: "combustions",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -232,6 +252,11 @@ namespace TodoApi.Migrations
                 name: "ix_cars_brand_key",
                 table: "cars",
                 column: "brand_key");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_cars_combustion_key",
+                table: "cars",
+                column: "combustion_key");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -262,6 +287,9 @@ namespace TodoApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "brands");
+
+            migrationBuilder.DropTable(
+                name: "combustions");
         }
     }
 }

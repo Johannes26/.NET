@@ -44,7 +44,15 @@
               "target": "Package",
               "version": "[3.0.0-preview-1719, )"
             },
+            "GraphQL.Authorization": {
+              "target": "Package",
+              "version": "[3.0.40-preview-40, )"
+            },
             "GraphQL.Server.Transports.AspNetCore.SystemTextJson": {
+              "target": "Package",
+              "version": "[3.5.0-alpha0073, )"
+            },
+            "GraphQL.Server.Ui.GraphiQL": {
               "target": "Package",
               "version": "[3.5.0-alpha0073, )"
             },

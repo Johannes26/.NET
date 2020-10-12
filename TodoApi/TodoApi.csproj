@@ -10,6 +10,8 @@
     <PackageReference Include="GraphQL.SystemTextJson" Version="3.0.0-preview-1719" />
     <PackageReference Include="GraphQL.Server.Transports.AspNetCore.SystemTextJson" Version="3.5.0-alpha0073" />
     <PackageReference Include="GraphQL.Server.Ui.Playground" Version="3.5.0-alpha0073" />
+    <PackageReference Include="GraphQL.Server.Ui.GraphiQL" Version="3.5.0-alpha0073" />
+    <PackageReference Include="GraphQL.Authorization" Version="3.0.40-preview-40" />
 
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
@@ -27,5 +29,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.0" />
+    
   </ItemGroup>
+  
 </Project>

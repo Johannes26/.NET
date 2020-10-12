@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -20,11 +21,12 @@ namespace TodoApi.Graphql
             throw new System.NotImplementedException();
         }
 
-        public async Task<System.Linq.ILookup<int?, Car>> GetAllAsync(IEnumerable<int?> ids)
+        public async Task<ILookup<int?, Car>> GetAllAsync(IEnumerable<int?> ids, String tipo)
         {
-            var cars = await _context.Cars.Where(x=>ids.Contains(x.BrandKey)).ToListAsync();
 
-            return cars.ToLookup(x => x.BrandKey);
+            var cars = await _context.Cars.Where(x=>(ids.Contains(x.BrandKey) && tipo=="Brand")||(ids.Contains(x.CombustionKey) && tipo=="Combustion")).ToListAsync();
+            var carsFilter=(tipo=="Brand")?cars.ToLookup(x=>x.BrandKey):cars.ToLookup(x=>x.CombustionKey);
+            return carsFilter;
         }
 
         public Task<IDictionary<int?, Car>> GetUsersByIdAsync(IEnumerable<int?> ids, CancellationToken cancellationToken)

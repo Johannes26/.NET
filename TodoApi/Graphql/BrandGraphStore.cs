@@ -23,7 +23,7 @@ namespace TodoApi.Graphql
             return obj.Entity;
         }
 
-        public Task<ILookup<int?, Brand>> GetAllAsync(IEnumerable<int?> ids)
+        public Task<ILookup<int?, Brand>> GetAllAsync(IEnumerable<int?> ids, string tipo)
         {
             throw new System.NotImplementedException();
         }

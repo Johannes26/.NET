@@ -20,6 +20,7 @@ using GraphQL.Server;
 using GraphQL.Types;
 using TodoApi.Graphql;
 using GraphQL.DataLoader;
+using Microsoft.AspNetCore.Http;
 
 namespace TodoApi
 {
@@ -39,6 +40,7 @@ namespace TodoApi
             services.AddDbContext<ApplicationDbContext>(opt =>
               opt.UseNpgsql(Configuration.GetConnectionString("PostgresConnection"))
               .UseSnakeCaseNamingConvention());
+
             #region identityUser
 
             services.AddDefaultIdentity<Usuario>(Opt => Opt.SignIn.RequireConfirmedAccount = true)
@@ -64,20 +66,21 @@ namespace TodoApi
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = false;
             });
+
             services.AddRazorPages();
             #endregion
-            
+
             services.AddSwaggerGen();
 
-
             #region graphql
-            services.AddScoped<IGraphStore<Car>,CarGraphStore>();
-            services.AddScoped<IGraphStore<Brand>,BrandGraphStore>();
-            
+            services.AddScoped<IGraphStore<Car>, CarGraphStore>();
+            services.AddScoped<IGraphStore<Brand>, BrandGraphStore>();
+            services.AddScoped<IGraphStore<Combustion>, CombustionGraphStore>();
+
             services.AddScoped<WebQuery>();
             services.AddScoped<ISchema, AppSchema>();
 
-            services.AddSingleton<IDataLoaderContextAccessor,DataLoaderContextAccessor>();
+            services.AddSingleton<IDataLoaderContextAccessor, DataLoaderContextAccessor>();
             services.AddSingleton<DataLoaderDocumentListener>();
 
             services.AddLogging(builder => builder.AddConsole());
@@ -90,9 +93,11 @@ namespace TodoApi
                 .AddSystemTextJson()
                 .AddDataLoader()
                 .AddGraphTypes(ServiceLifetime.Scoped);
+                
             #endregion
-            
+
             #region Servicios Autenticacion
+
             var key = Encoding.ASCII.GetBytes(Configuration["IssuerKey"]);
             services.AddAuthentication()
             .AddJwtBearer("Bearer", x =>
@@ -123,8 +128,8 @@ namespace TodoApi
             {
                 app.UseDeveloperExceptionPage();
             }
-            
-        
+
+
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
             // Enable middleware to serve generated Swagger as a JSON endpoint.
@@ -142,6 +147,7 @@ namespace TodoApi
             app.UseAuthentication();
             app.UseAuthorization();
 
+            //app.UseGraphQLWithAuth();
             app.UseGraphQL<ISchema>();
             app.UseGraphQLPlayground();
 

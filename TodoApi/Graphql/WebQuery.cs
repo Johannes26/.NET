@@ -11,6 +11,7 @@ namespace TodoApi.Graphql
         public readonly ApplicationDbContext _context;
         public WebQuery(ApplicationDbContext mcontext)
         {
+            _context=mcontext;
             Field<ListGraphType<CarGraphType>>(
                 "car_list",
                 arguments: new QueryArguments
@@ -47,10 +48,10 @@ namespace TodoApi.Graphql
                 "car",
                 arguments: new QueryArguments
                 {
-                    new QueryArgument<IntGraphType>
+                    new QueryArgument<NonNullGraphType<IntGraphType>>
                     {
                         Name = "id",
-                        Description ="id del carro"
+                        Description ="Id del modelo del carro"
                     }
                 },
                 resolve: context =>
@@ -90,8 +91,16 @@ namespace TodoApi.Graphql
 
             );
 
-            Field<BrandGraphType>(
+            Field<ListGraphType<BrandGraphType>>(
                 "brand",
+                resolve: context =>
+                {
+                    return _context.Brands.ToList();
+                }
+            );
+
+            Field<ListGraphType<CombustionGraphType>>(
+                "combustion_list",
                 arguments: new QueryArguments
                 {
                     new QueryArgument<IntGraphType>
@@ -102,12 +111,23 @@ namespace TodoApi.Graphql
                 },
                 resolve: context =>
                 {
-                    var id = context.GetArgument<int>("id");
-                    return _context.Brands
-                    .SingleOrDefault(x => x.Id == id);
+                    IQueryable<Combustion> query = _context.Combustions;
+                    var id = context.GetArgument<int?>("id");
+                    var take = context.GetArgument<int?>("take");
+                    if (id != null)
+                    {
+                        query = query.Where(x => x.Id == id);
+                    }
+                    if (take != null)
+                    {
+                        query = query.Take(take.Value);
+                    }
+                    return query.ToList();
                 }
 
             );
+
+            
 
 
         }

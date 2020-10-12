@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -9,8 +10,7 @@ namespace TodoApi.Graphql
     {
         Task<T> CreateAsync(T model);
         Task<T> UpdateAsync(int id, T model);
-        Task<ILookup<int?, T>> GetAllAsync(IEnumerable<int?> ids);
-
+        Task<ILookup<int?, T>> GetAllAsync(IEnumerable<int?> ids,String tipo);
         Task<IDictionary<int?, T>> GetUsersByIdAsync(IEnumerable<int?> ids, CancellationToken cancellationToken);
     }
 }

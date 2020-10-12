@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using GraphQL.Authorization;
 using GraphQL.DataLoader;
 using GraphQL.Types;
 using TodoApi.Graphql;
 
 namespace TodoApi.Models
 {
-    public class Brand
+    public class Combustion
     {
         public int Id { get; set; }
 
@@ -15,23 +14,23 @@ namespace TodoApi.Models
 
         [JsonIgnore]
         public List<Car> Cars { get; set; }
-
     }
-    public class InputBrandType : InputObjectGraphType<Brand>
+
+    public class InputCombustionType : InputObjectGraphType<Combustion>
         {
-            public InputBrandType()
+            public InputCombustionType()
             {
                 //this.AuthorizeWith("AdminPolicy");
-                Field<NonNullGraphType<StringGraphType>>(nameof(Brand.Name));
+                Field<NonNullGraphType<StringGraphType>>(nameof(Combustion.Name));
             }
         }
-    public class BrandGraphType : ObjectGraphType<Brand>
+    public class CombustionGraphType : ObjectGraphType<Combustion>
     {
 
-        public BrandGraphType(IDataLoaderContextAccessor accessor, IGraphStore<Car> carStore, ApplicationDbContext _context)
+        public CombustionGraphType(IDataLoaderContextAccessor accessor, IGraphStore<Car> carStore, ApplicationDbContext _context)
         {
-            Field(x => x.Id).Description("Id del modelo del carro");
-            Field(x => x.Name).Description("Placa del modelo del carro");
+            Field(x => x.Id).Description("Id de la combustion del carro");
+            Field(x => x.Name).Description("Tipo combustion del carro");
 
             Field<ListGraphType<CarGraphType>, IEnumerable<Car>>()
                 .Name("Cars")
@@ -39,7 +38,7 @@ namespace TodoApi.Models
                 .ResolveAsync(ctx =>
                 {
                     var carsLoader = accessor.Context.GetOrAddCollectionBatchLoader<int?, Car>("GetCars",
-                        (ids) => carStore.GetAllAsync(ids,"Brand"));
+                        (ids) => carStore.GetAllAsync(ids,"Combustion"));
 
                     return carsLoader.LoadAsync(ctx.Source.Id);
                 });

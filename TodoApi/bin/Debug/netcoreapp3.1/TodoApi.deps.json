@@ -26,7 +26,9 @@
         "dependencies": {
           "EFCore.NamingConventions": "1.1.0",
           "GraphQL": "3.0.0-preview-1719",
+          "GraphQL.Authorization": "3.0.40-preview-40",
           "GraphQL.Server.Transports.AspNetCore.SystemTextJson": "3.5.0-alpha0073",
+          "GraphQL.Server.Ui.GraphiQL": "3.5.0-alpha0073",
           "GraphQL.Server.Ui.Playground": "3.5.0-alpha0073",
           "GraphQL.SystemTextJson": "3.0.0-preview-1719",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.8",
@@ -356,6 +358,20 @@
           "lib/netstandard2.0/GraphQL-Parser.dll": {}
         }
       },
+      "GraphQL.Authorization/3.0.40-preview-40": {
+        "dependencies": {
+          "GraphQL": "3.0.0-preview-1719"
+        },
+        "runtime": {
+          "lib/netstandard2.0/GraphQL.Authorization.dll": {
+            "assemblyVersion": "3.0.40.0",
+            "fileVersion": "3.0.40.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/GraphQL.Authorization.dll": {}
+        }
+      },
       "GraphQL.NewtonsoftJson/3.0.0-preview-1719": {
         "dependencies": {
           "GraphQL": "3.0.0-preview-1719",
@@ -433,6 +449,17 @@
         },
         "compile": {
           "lib/netstandard2.0/GraphQL.Server.Transports.Subscriptions.Abstractions.dll": {}
+        }
+      },
+      "GraphQL.Server.Ui.GraphiQL/3.5.0-alpha0073": {
+        "runtime": {
+          "lib/netcoreapp3.1/GraphQL.Server.Ui.GraphiQL.dll": {
+            "assemblyVersion": "3.5.0.0",
+            "fileVersion": "3.5.0.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/GraphQL.Server.Ui.GraphiQL.dll": {}
         }
       },
       "GraphQL.Server.Ui.Playground/3.5.0-alpha0073": {
@@ -3912,6 +3939,13 @@
       "path": "graphql-parser/5.3.0",
       "hashPath": "graphql-parser.5.3.0.nupkg.sha512"
     },
+    "GraphQL.Authorization/3.0.40-preview-40": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xerk2yg/49PHq2hChKfTSp1Vz46FmgLrnGYZ+FBwbDCCll5uopO+7VeTdtNlVZbUH26gXNn0WKbGIukFHrEiKA==",
+      "path": "graphql.authorization/3.0.40-preview-40",
+      "hashPath": "graphql.authorization.3.0.40-preview-40.nupkg.sha512"
+    },
     "GraphQL.NewtonsoftJson/3.0.0-preview-1719": {
       "type": "package",
       "serviceable": true,
@@ -3946,6 +3980,13 @@
       "sha512": "sha512-aXeEsI/vWDMnjlCVYM4KPjXvjYUsV+DEhuN74r1MlmSBJK+e24oe0iVnziWqdiNlKyrBf6qoxDFUr2JhmcG4HQ==",
       "path": "graphql.server.transports.subscriptions.abstractions/3.5.0-alpha0073",
       "hashPath": "graphql.server.transports.subscriptions.abstractions.3.5.0-alpha0073.nupkg.sha512"
+    },
+    "GraphQL.Server.Ui.GraphiQL/3.5.0-alpha0073": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PyGfa/BHPDMRfhBCCtQdkIxEyhJ6WW7CvtDzb5CDJb+eRUVrE12Y5OCbcJQaPdFhZrPz4iXRC+EZkb7T9h18CA==",
+      "path": "graphql.server.ui.graphiql/3.5.0-alpha0073",
+      "hashPath": "graphql.server.ui.graphiql.3.5.0-alpha0073.nupkg.sha512"
     },
     "GraphQL.Server.Ui.Playground/3.5.0-alpha0073": {
       "type": "package",

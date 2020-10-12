@@ -187,10 +187,10 @@ namespace TodoApi.Migrations
 
             modelBuilder.Entity("TodoApi.Models.Brand", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id")
-                        .HasColumnType("bigint")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Name")
@@ -205,19 +205,23 @@ namespace TodoApi.Migrations
 
             modelBuilder.Entity("TodoApi.Models.Car", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id")
-                        .HasColumnType("bigint")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<long?>("BrandKey")
+                    b.Property<int?>("BrandKey")
                         .HasColumnName("brand_key")
-                        .HasColumnType("bigint");
+                        .HasColumnType("integer");
 
-                    b.Property<string>("Modelo")
+                    b.Property<int?>("CombustionKey")
+                        .HasColumnName("combustion_key")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Modelo")
                         .HasColumnName("modelo")
-                        .HasColumnType("text");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Placa")
                         .HasColumnName("placa")
@@ -233,7 +237,28 @@ namespace TodoApi.Migrations
                     b.HasIndex("BrandKey")
                         .HasName("ix_cars_brand_key");
 
+                    b.HasIndex("CombustionKey")
+                        .HasName("ix_cars_combustion_key");
+
                     b.ToTable("cars");
+                });
+
+            modelBuilder.Entity("TodoApi.Models.Combustion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id")
+                        .HasName("pk_combustions");
+
+                    b.ToTable("combustions");
                 });
 
             modelBuilder.Entity("TodoApi.Models.Usuario", b =>
@@ -395,6 +420,11 @@ namespace TodoApi.Migrations
                         .WithMany("Cars")
                         .HasForeignKey("BrandKey")
                         .HasConstraintName("fk_cars_brands_brand_key");
+
+                    b.HasOne("TodoApi.Models.Combustion", "Combustion")
+                        .WithMany("Cars")
+                        .HasForeignKey("CombustionKey")
+                        .HasConstraintName("fk_cars_combustions_combustion_key");
                 });
 #pragma warning restore 612, 618
         }

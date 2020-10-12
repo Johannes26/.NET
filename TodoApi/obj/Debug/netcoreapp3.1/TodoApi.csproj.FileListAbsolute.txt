@@ -205,3 +205,5 @@
 /Users/johanguerrero/Projects/capacitacion/TodoApi/bin/Debug/netcoreapp3.1/GraphQL.Server.Transports.AspNetCore.SystemTextJson.dll
 /Users/johanguerrero/Projects/capacitacion/TodoApi/bin/Debug/netcoreapp3.1/GraphQL.Server.Transports.Subscriptions.Abstractions.dll
 /Users/johanguerrero/Projects/capacitacion/TodoApi/bin/Debug/netcoreapp3.1/System.IO.Pipelines.dll
+/Users/johanguerrero/Projects/capacitacion/TodoApi/bin/Debug/netcoreapp3.1/GraphQL.Authorization.dll
+/Users/johanguerrero/Projects/capacitacion/TodoApi/bin/Debug/netcoreapp3.1/GraphQL.Server.Ui.GraphiQL.dll

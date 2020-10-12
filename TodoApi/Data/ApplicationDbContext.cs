@@ -12,6 +12,7 @@ namespace TodoApi.Models
         }
         public DbSet<Car> Cars {get; set;}
         public DbSet<Brand> Brands {get; set;}
+        public DbSet<Combustion> Combustions {get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

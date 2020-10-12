@@ -42,6 +42,18 @@
           "lib/netstandard2.0/GraphQL-Parser.dll": {}
         }
       },
+      "GraphQL.Authorization/3.0.40-preview-40": {
+        "type": "package",
+        "dependencies": {
+          "GraphQL": "3.0.0-preview-1648"
+        },
+        "compile": {
+          "lib/netstandard2.0/GraphQL.Authorization.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/GraphQL.Authorization.dll": {}
+        }
+      },
       "GraphQL.NewtonsoftJson/3.0.0-preview-1719": {
         "type": "package",
         "dependencies": {
@@ -116,6 +128,18 @@
         "runtime": {
           "lib/netstandard2.0/GraphQL.Server.Transports.Subscriptions.Abstractions.dll": {}
         }
+      },
+      "GraphQL.Server.Ui.GraphiQL/3.5.0-alpha0073": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/GraphQL.Server.Ui.GraphiQL.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/GraphQL.Server.Ui.GraphiQL.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "GraphQL.Server.Ui.Playground/3.5.0-alpha0073": {
         "type": "package",
@@ -2571,6 +2595,18 @@
         "logo.64x64.png"
       ]
     },
+    "GraphQL.Authorization/3.0.40-preview-40": {
+      "sha512": "xerk2yg/49PHq2hChKfTSp1Vz46FmgLrnGYZ+FBwbDCCll5uopO+7VeTdtNlVZbUH26gXNn0WKbGIukFHrEiKA==",
+      "type": "package",
+      "path": "graphql.authorization/3.0.40-preview-40",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "graphql.authorization.3.0.40-preview-40.nupkg.sha512",
+        "graphql.authorization.nuspec",
+        "lib/netstandard2.0/GraphQL.Authorization.dll"
+      ]
+    },
     "GraphQL.NewtonsoftJson/3.0.0-preview-1719": {
       "sha512": "aODss6mbnmvzAj+IyeoywRnc+9rxudadjfTFjos8O+3R2lzcctDyUbxdXSgM2FTr1QBLroHG/VXlwq6a3mj+mQ==",
       "type": "package",
@@ -2633,6 +2669,20 @@
         "graphql.server.transports.subscriptions.abstractions.3.5.0-alpha0073.nupkg.sha512",
         "graphql.server.transports.subscriptions.abstractions.nuspec",
         "lib/netstandard2.0/GraphQL.Server.Transports.Subscriptions.Abstractions.dll"
+      ]
+    },
+    "GraphQL.Server.Ui.GraphiQL/3.5.0-alpha0073": {
+      "sha512": "PyGfa/BHPDMRfhBCCtQdkIxEyhJ6WW7CvtDzb5CDJb+eRUVrE12Y5OCbcJQaPdFhZrPz4iXRC+EZkb7T9h18CA==",
+      "type": "package",
+      "path": "graphql.server.ui.graphiql/3.5.0-alpha0073",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "graphql.server.ui.graphiql.3.5.0-alpha0073.nupkg.sha512",
+        "graphql.server.ui.graphiql.nuspec",
+        "lib/netcoreapp3.0/GraphQL.Server.Ui.GraphiQL.dll",
+        "lib/netcoreapp3.1/GraphQL.Server.Ui.GraphiQL.dll",
+        "lib/netstandard2.0/GraphQL.Server.Ui.GraphiQL.dll"
       ]
     },
     "GraphQL.Server.Ui.Playground/3.5.0-alpha0073": {
@@ -8076,7 +8126,9 @@
     ".NETCoreApp,Version=v3.1": [
       "EFCore.NamingConventions >= 1.1.0",
       "GraphQL >= 3.0.0-preview-1719",
+      "GraphQL.Authorization >= 3.0.40-preview-40",
       "GraphQL.Server.Transports.AspNetCore.SystemTextJson >= 3.5.0-alpha0073",
+      "GraphQL.Server.Ui.GraphiQL >= 3.5.0-alpha0073",
       "GraphQL.Server.Ui.Playground >= 3.5.0-alpha0073",
       "GraphQL.SystemTextJson >= 3.0.0-preview-1719",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.1.8",
@@ -8134,7 +8186,15 @@
             "target": "Package",
             "version": "[3.0.0-preview-1719, )"
           },
+          "GraphQL.Authorization": {
+            "target": "Package",
+            "version": "[3.0.40-preview-40, )"
+          },
           "GraphQL.Server.Transports.AspNetCore.SystemTextJson": {
+            "target": "Package",
+            "version": "[3.5.0-alpha0073, )"
+          },
+          "GraphQL.Server.Ui.GraphiQL": {
             "target": "Package",
             "version": "[3.5.0-alpha0073, )"
           },
